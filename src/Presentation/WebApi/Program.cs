@@ -1,5 +1,11 @@
 
 
+using Application.DependencyResolvers.Autofac;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using MediatR;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,9 +14,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDependencyResolvers(new ICoreModule[] {
-               new CoreModule()
-            });
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new AutofacModule()));
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
