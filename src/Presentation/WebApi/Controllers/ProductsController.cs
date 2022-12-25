@@ -17,7 +17,7 @@ namespace WebApi.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
+        [HttpGet("GetAllAsync")]
         public async Task<IActionResult> GetAllAsync()
         {
             var query = new GetAllProductsQuery();

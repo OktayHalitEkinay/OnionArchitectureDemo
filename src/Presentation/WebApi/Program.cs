@@ -1,6 +1,7 @@
 
 
 using Application.DependencyResolvers.Autofac;
+using Application.Features.Queries.GetAllProducts;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using MediatR;
@@ -15,9 +16,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
-builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new AutofacModule()));
+
+builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new AutofacApplicationModule()));
+builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new AutofacDomainModule()));
+builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new AutofacPersistenceModule()));
+
+
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddMediatR(typeof(GetAllProductsQuery).GetTypeInfo().Assembly);
 
 var app = builder.Build();
 
