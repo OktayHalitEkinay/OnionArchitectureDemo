@@ -11,9 +11,10 @@ namespace Persistence.Context
     public class ApplicationDbContext:DbContext
     {
         public DbSet<Product> Products { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring
+        (DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseInMemoryDatabase("memoryDb");
+            optionsBuilder.UseInMemoryDatabase(databaseName: "myDb");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
