@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces.Repositories
 {
-    public interface IGenericRepository<T> where T : BaseEntitiy
+    public interface IGenericRepository<TEntity> 
+        where TEntity : BaseEntitiy
     {
-        Task<List<T>> GetAllAsync();
-        Task<T> GetByIdAsync(Guid id);
-        Task<T> AddAsync(T entity);
+        Task<List<TEntity>> GetAllAsync();
+        Task<TEntity> GetByIdAsync(Guid id);
+        Task<TEntity> AddAsync(TEntity entity);
 
     }
 }

@@ -9,7 +9,7 @@ namespace Persistence.Context
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Northwind;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-MT6A41P;Initial Catalog=OnionArchitectureDemo;Integrated Security=True;TrustServerCertificate=True;Encrypt=false");
         }
         public DbSet<Product> Products { get; set; }
 
