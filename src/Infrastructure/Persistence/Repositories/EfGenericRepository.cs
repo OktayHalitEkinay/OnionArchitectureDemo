@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Persistence.Repositories
 {
-    public class GenericRepositoryAsync<T> : IGenericRepository<T> where T : BaseEntitiy
+    public class EfGenericRepository<T> : IGenericRepository<T> where T : BaseEntitiy
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public GenericRepositoryAsync(ApplicationDbContext dbContext)
+        public EfGenericRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -28,7 +28,7 @@ namespace Persistence.Repositories
         public async Task<List<T>> GetAllAsync()
         {
             return await _dbContext.Set<T>().ToListAsync();
-            
+
         }
 
         public async Task<T> GetByIdAsync(Guid id)

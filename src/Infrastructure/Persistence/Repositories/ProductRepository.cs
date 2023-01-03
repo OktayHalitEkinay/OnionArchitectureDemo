@@ -10,8 +10,9 @@ using System.Threading.Tasks;
 
 namespace Persistence.Repositories
 {
-    public class ProductRepository : GenericRepositoryAsync<Product>,IProductRepository
+    public class ProductRepository: EfGenericRepository<Product>,IProductRepository
     {
-        public ProductRepository(ApplicationDbContext dbContext):base(dbContext) {}
+        public ProductRepository(ApplicationDbContext dbContext) : base(dbContext) { }
+
     }
 }

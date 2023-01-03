@@ -22,7 +22,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterMod
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new AutofacPersistenceModule()));
 
 
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddAutoMapper(typeof(GetAllProductsQuery).GetTypeInfo().Assembly);
 builder.Services.AddMediatR(typeof(GetAllProductsQuery).GetTypeInfo().Assembly);
 
 var app = builder.Build();
